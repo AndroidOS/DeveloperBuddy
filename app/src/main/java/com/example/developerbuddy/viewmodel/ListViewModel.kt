@@ -43,8 +43,7 @@ class ListViewModel(application: Application) : BaseViewModel(application) {
                             "Items retrieved from endpoint",
                             Toast.LENGTH_SHORT
                         ).show()
-                        // gitJobs.value = jobList
-                        //storeGitJobsLocally(jobList)
+                        soItems.value = itemList.items
 
                     }
 
