@@ -33,6 +33,7 @@ class StackListAdapter(val stackList: ArrayList<Item>) :
 
     override fun onBindViewHolder(holder: StackViewHolder, position: Int) {
         holder.view.txt_title.text = stackList[position].user?.display_name
+        holder.view.txt_accept_rate.text = stackList[position].rank
 
         val uuid = position
         holder.view.setOnClickListener {
