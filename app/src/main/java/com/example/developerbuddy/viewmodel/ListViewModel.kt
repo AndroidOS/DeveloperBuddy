@@ -1,16 +1,15 @@
-package com.casa.azul.dogs.viewmodel
+package com.example.developerbuddy.viewmodel
 
 import android.app.Application
 import android.util.Log
 import android.widget.Toast
 import androidx.lifecycle.MutableLiveData
-import com.casa.azul.dogs.model.SOApiService
-import com.example.developerbuddy.model.Item
-import com.example.developerbuddy.model.RootObject
+import com.example.developerbuddy.model.*
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.observers.DisposableSingleObserver
 import io.reactivex.schedulers.Schedulers
+import kotlinx.coroutines.launch
 
 private const val TAG = "ListViewModel"
 
@@ -44,6 +43,7 @@ class ListViewModel(application: Application) : BaseViewModel(application) {
                             Toast.LENGTH_SHORT
                         ).show()
                         soItems.value = itemList.items
+                        //storeItemsLocally(itemList)
 
                     }
 
@@ -55,6 +55,20 @@ class ListViewModel(application: Application) : BaseViewModel(application) {
 
                 })
         )
+    }
+
+    private fun storeItemsLocally(list: List<Stack>) {
+        launch {
+            val dao = StackDatabase(getApplication()).stackDao()
+            dao.deleteAllStacks()
+            val result = dao.insertAll(*list.toTypedArray())
+            var i = 0
+            while (i < list.size) {
+                list[i].uuid = result[i].toInt()
+                ++i
+            }
+
+        }
     }
 
 

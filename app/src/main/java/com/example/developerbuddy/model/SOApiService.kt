@@ -1,6 +1,6 @@
-package com.casa.azul.dogs.model
+package com.example.developerbuddy.model
 
-import com.example.developerbuddy.model.RootObject
+
 import io.reactivex.Single
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory

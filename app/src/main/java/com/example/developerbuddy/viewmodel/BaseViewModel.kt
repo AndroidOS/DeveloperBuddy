@@ -1,5 +1,4 @@
-package com.casa.azul.dogs.viewmodel
-
+package com.example.developerbuddy.viewmodel
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import kotlinx.coroutines.CoroutineScope
