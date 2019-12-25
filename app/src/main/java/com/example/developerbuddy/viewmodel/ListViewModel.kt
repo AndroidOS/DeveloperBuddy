@@ -123,7 +123,8 @@ class ListViewModel(application: Application) : BaseViewModel(application) {
                 item.name,
                 item.user?.accept_rate,
                 item.badge_type,
-                item.badge_id
+                item.badge_id,
+                item.rank
             )
 
             stackList.add(stack)

@@ -14,7 +14,8 @@ data class Stack
     val name: String?,
     val accept_rate: Int?,
     val badge_type: String?,
-    val badge_id: Int?
+    val badge_id: Int?,
+    val rank: String?
 ) {
     @PrimaryKey(autoGenerate = true)
     var uuid: Int = 0

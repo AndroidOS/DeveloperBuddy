@@ -39,9 +39,6 @@ class ListFragment : Fragment() {
 
         viewModel.refresh()
 
-//        val action = ListFragmentDirections.actionListFragmentToDetailFragment(20)
-//        Navigation.findNavController(view)
-//            .navigate(action)
 
         stackList.apply {
             layoutManager = LinearLayoutManager(context)
@@ -51,7 +48,7 @@ class ListFragment : Fragment() {
     }
 
     fun observeViewModel() {
-        viewModel.soItems.observe(this, Observer { stack ->
+        viewModel.stackItems.observe(this, Observer { stack ->
             stack?.let {
                 stackList.visibility = View.VISIBLE
                 stackListAdapter.updateStackList(stack)

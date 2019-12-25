@@ -6,14 +6,14 @@ import android.view.ViewGroup
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.example.developerbuddy.R
-import com.example.developerbuddy.model.Item
+import com.example.developerbuddy.model.Stack
 import kotlinx.android.synthetic.main.stack_item.view.*
 
 
-class StackListAdapter(val stackList: ArrayList<Item>) :
+class StackListAdapter(val stackList: ArrayList<Stack>) :
     RecyclerView.Adapter<StackListAdapter.StackViewHolder>() {
 
-    fun updateStackList(newGitJobsList: List<Item>) {
+    fun updateStackList(newGitJobsList: List<Stack>) {
         stackList.clear()
         stackList.addAll(newGitJobsList)
         notifyDataSetChanged()
@@ -32,10 +32,8 @@ class StackListAdapter(val stackList: ArrayList<Item>) :
     override fun getItemCount() = stackList.size
 
     override fun onBindViewHolder(holder: StackViewHolder, position: Int) {
-//        holder.view.txt_title.text = stackList[position].user?.display_name
-//        holder.view.txt_accept_rate.text = stackList[position].rank
 
-        holder.view.txt_title.text = stackList[position].user?.display_name
+        holder.view.txt_title.text = stackList[position].display_name
         holder.view.txt_accept_rate.text = stackList[position].rank
 
         val uuid = position
