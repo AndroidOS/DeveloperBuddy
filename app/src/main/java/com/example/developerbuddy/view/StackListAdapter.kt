@@ -1,5 +1,6 @@
 package com.example.developerbuddy.view
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,6 +11,7 @@ import com.example.developerbuddy.model.Stack
 import kotlinx.android.synthetic.main.stack_item.view.*
 
 
+private const val TAG = "StackListAdapter"
 class StackListAdapter(val stackList: ArrayList<Stack>) :
     RecyclerView.Adapter<StackListAdapter.StackViewHolder>() {
 
@@ -32,7 +34,7 @@ class StackListAdapter(val stackList: ArrayList<Stack>) :
     override fun getItemCount() = stackList.size
 
     override fun onBindViewHolder(holder: StackViewHolder, position: Int) {
-
+        Log.d(TAG, "${stackList[position].profile_image}")
         holder.view.txt_title.text = stackList[position].display_name
         holder.view.txt_accept_rate.text = stackList[position].rank
 
