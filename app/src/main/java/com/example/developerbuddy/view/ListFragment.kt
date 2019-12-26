@@ -45,6 +45,12 @@ class ListFragment : Fragment() {
             adapter = stackListAdapter
             observeViewModel()
         }
+
+        refreshLayout.setOnRefreshListener {
+            
+            viewModel.refresh()
+            refreshLayout.isRefreshing = false
+        }
     }
 
     fun observeViewModel() {
