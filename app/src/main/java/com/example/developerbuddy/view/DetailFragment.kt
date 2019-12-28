@@ -14,9 +14,7 @@ import com.example.developerbuddy.utils.loadImage
 import com.example.developerbuddy.viewmodel.ListViewModel
 import kotlinx.android.synthetic.main.fragment_detail.*
 
-/**
- * A simple [Fragment] subclass.
- */
+
 class DetailFragment : Fragment() {
 
     private lateinit var viewModel: ListViewModel
@@ -54,6 +52,12 @@ class DetailFragment : Fragment() {
             stack.profile_image,
             getProgressDrawable(view!!.context)
         )
+
+        val string = "Reputation = ${stack.reputation}\n" +
+                "Rank = ${stack.rank}\n" +
+                "User type = ${stack.user_type}\n"
+
+        detail_textView.text = string
 
     }
 
