@@ -19,14 +19,18 @@ class ListViewModel(application: Application) : BaseViewModel(application) {
     private val sOService = SOApiService()
     private val disposable = CompositeDisposable()
 
-    val soItems = MutableLiveData<List<Item>>()
+    val detailStack = MutableLiveData<Stack>()
     val stackItems = MutableLiveData<List<Stack>>()
     val loading = MutableLiveData<Boolean>()
     val menu_email = MutableLiveData<Boolean>()
 
     fun refresh() {
         fetchFromRemote()
-        
+    }
+
+    fun getDetailPic(i: Int): Stack? {
+        detailStack.value = stackItems.value!![i]
+        return detailStack.value
     }
 
     
@@ -38,14 +42,9 @@ class ListViewModel(application: Application) : BaseViewModel(application) {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeWith(object : DisposableSingleObserver<RootObject>() {
                     override fun onSuccess(itemList: RootObject) {
-                        //Log.d(TAG, "List size =  ${jobList.size}")
-//                        Toast.makeText(
-//                            getApplication(),
-//                            "Items retrieved from endpoint",
-//                            Toast.LENGTH_SHORT
-//                        ).show()
 
-                        soItems.value = itemList.items
+
+                        //soItems.value = itemList.items
                         if (itemList.items != null) {
                             storeItemsLocally(createStackListFromDownload(itemList.items))
                             //fetchFromDatabase()
