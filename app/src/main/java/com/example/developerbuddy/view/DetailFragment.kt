@@ -77,6 +77,11 @@ class DetailFragment : Fragment() {
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+        activity?.actionBar?.title = "Details"
+    }
+
     override fun onDetach() {
         super.onDetach()
         listener.unHideFAB(false)
