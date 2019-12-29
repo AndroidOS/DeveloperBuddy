@@ -1,6 +1,7 @@
 package com.example.developerbuddy.view
 
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -20,6 +21,8 @@ class DetailFragment : Fragment() {
     private lateinit var viewModel: ListViewModel
     private var stackUuid = 0
 
+    private lateinit var listener: Listener
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -30,6 +33,9 @@ class DetailFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        listener.unHideFAB(true)
+
 
         viewModel = activity?.run {
             ViewModelProviders.of(this)[ListViewModel::class.java]
@@ -59,6 +65,25 @@ class DetailFragment : Fragment() {
 
         detail_textView.text = string
 
+    }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        if (context is Listener) {
+            listener = context
+        } else {
+            throw ClassCastException(context.toString() + " must implement Listener")
+
+        }
+    }
+
+    override fun onDetach() {
+        super.onDetach()
+        listener.unHideFAB(false)
+    }
+
+    internal interface Listener {
+        fun unHideFAB(b: Boolean)
     }
 
 

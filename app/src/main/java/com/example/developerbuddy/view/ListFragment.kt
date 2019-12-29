@@ -33,6 +33,7 @@ class ListFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
 
+
         viewModel = activity?.run {
             ViewModelProviders.of(this)[ListViewModel::class.java]
         } ?: throw Exception("Invalid Activity")

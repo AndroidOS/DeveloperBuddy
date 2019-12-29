@@ -10,10 +10,9 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.NavigationUI.setupActionBarWithNavController
 import com.example.developerbuddy.R
-import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), DetailFragment.Listener {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
 
@@ -28,9 +27,10 @@ class MainActivity : AppCompatActivity() {
             .build()
 
         fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show()
+
         }
+
+        fab.hide()
     }
 
     override fun onSupportNavigateUp(): Boolean {
@@ -73,5 +73,13 @@ class MainActivity : AppCompatActivity() {
 
         val dialog: AlertDialog = builder.create()
         dialog.show()
+    }
+
+    override fun unHideFAB(b: Boolean) {
+        if (b) {
+            fab.show()
+        } else {
+            fab.hide()
+        }
     }
 }
